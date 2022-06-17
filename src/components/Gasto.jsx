@@ -1,4 +1,3 @@
-import React from 'react'
 import {
     LeadingActions,
     SwipeableList,
@@ -7,6 +6,7 @@ import {
     TrailingActions
 } from 'react-swipeable-list'
 import "react-swipeable-list/dist/styles.css"
+import style from "./css/gasto.module.css"
 
 import { formatearFecha } from '../helpers'
 
@@ -19,17 +19,17 @@ import IconoSalud from '../img/icono_salud.svg'
 import IconoSuscripciones from '../img/icono_suscripciones.svg'
 
 const diccionarioIconos = {
-    ahorro : IconoAhorro,
-    comida : IconoComida,
-    casa : IconoCasa,
-    gastos : IconoGastos,
-    ocio : IconoOcio,
-    salud : IconoSalud,
-    suscripciones : IconoSuscripciones
+    ahorro: IconoAhorro,
+    comida: IconoComida,
+    casa: IconoCasa,
+    gastos: IconoGastos,
+    ocio: IconoOcio,
+    salud: IconoSalud,
+    suscripciones: IconoSuscripciones
 }
 
-const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
-    const { categoria, nombre, cantidad, id, fecha } = gasto;
+const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
+    const { categoria, nombre, cantidad, id, fecha } = gasto
 
     const leadingActions = () => (
         <LeadingActions>
@@ -41,7 +41,7 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
 
     const trailingActions = () => (
         <TrailingActions>
-            <SwipeAction 
+            <SwipeAction
                 onClick={() => eliminarGasto(id)}
                 destructive={true}
             >
@@ -56,9 +56,9 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
                 leadingActions={leadingActions()}
                 trailingActions={trailingActions()}
             >
-                <div className="gasto sombra">
+                <div className={`gasto sombra ${style.gastoSombra}`}>
                     <div className="contenido-gasto">
-                        <img 
+                        <img
                             src={diccionarioIconos[categoria]}
                             alt="Icono Gasto"
                         />
@@ -73,6 +73,8 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
                     </div>
                     <p className="cantidad-gasto">${cantidad}</p>
                 </div>
+                <div className={style.right}>Desliza a la izquierda para eliminar</div>
+                <div className={style.left}>Desliza a la derecha para editar</div>
             </SwipeableListItem>
         </SwipeableList>
     )
